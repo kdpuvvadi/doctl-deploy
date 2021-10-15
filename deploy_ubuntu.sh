@@ -1,8 +1,6 @@
 #!/bin/bash
 
-RESTORE='\033[0m'
-RED='\033[00;31m'
-
+echo -n 'Enter username of droplet:' && read -r User_Name
 echo -n 'Enter the Name of the server:' && read -r Server_Name
 echo -n 'Enter the Tag for the server:' && read -r Server_Tag
 
