@@ -7,11 +7,12 @@ echo -n 'Enter username of droplet:' && read -r User_Name
 echo $User_Name
 
 # replace username
-sed -i "s/username/$User_Name/g" init.yml
+sed -i -e "s/username/$User_Name/" init.yml
 
-
+# add pub key
 key_pub=$(cat ~/.ssh/id_rsa.pub)
-
+echo $key_pub
+sed -i -e "s|pubkey|$key_pub|" init.yml
 
 echo -n 'Enter the Name of the server:' && read -r Server_Name
 echo -n 'Enter the Tag for the server:' && read -r Server_Tag
