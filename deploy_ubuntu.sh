@@ -4,9 +4,13 @@
 cp copy.init.yml init.yml
 
 echo -n 'Enter username of droplet:' && read -r User_Name
+echo $User_Name
 
 # replace username
-sed -i 's:username:$User_Name:' init.yml
+sed -i "s/username/$User_Name/g" init.yml
+
+
+key_pub=$(cat ~/.ssh/id_rsa.pub)
 
 
 echo -n 'Enter the Name of the server:' && read -r Server_Name
