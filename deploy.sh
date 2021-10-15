@@ -4,7 +4,7 @@ doctl >/dev/null 2>/dev/null
 
 if [ "$?" != 0 ]; 
     then echo "Error!" 1>&2
-    echo please install doctl with config.sh
+    echo please install doctl
     exit 127
 fi 
 
