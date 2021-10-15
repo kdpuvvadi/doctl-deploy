@@ -1,5 +1,13 @@
 #!/bin/bash
 
+doctl >/dev/null 2>/dev/null
+
+if [ "$?" != 0 ]; 
+    then echo "Error!" 1>&2
+    echo please install doctl with config.sh
+    exit 127
+fi 
+
 # Copy init file
 cp copy.init.yml init.yml
 
