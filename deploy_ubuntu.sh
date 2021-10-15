@@ -4,14 +4,12 @@
 cp copy.init.yml init.yml
 
 echo -n 'Enter username of droplet:' && read -r User_Name
-echo $User_Name
 
 # replace username
 sed -i -e "s/username/$User_Name/" init.yml
 
 # add pub key
 key_pub=$(cat ~/.ssh/id_rsa.pub)
-echo $key_pub
 sed -i -e "s|pubkey|$key_pub|" init.yml
 
 echo -n 'Enter the Name of the server:' && read -r Server_Name
@@ -110,7 +108,7 @@ list() {
     doctl compute droplet list --format ID,Name,Tags,"Public IPv4",Region
 }
 
-echo Name of the Server is echo $Server_Name
+echo Name of the Server is $Server_Name
 sleep 1s
 
 echo Server Tag is $Server_Tag
@@ -131,7 +129,7 @@ sleep 1s
 echo "Creating droplet on Digital Ocean" 
 deploy 
 
-#remove init file
+# remove init file
 echo removing init file
 rm init.yml
 
