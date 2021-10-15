@@ -1,6 +1,14 @@
 #!/bin/bash
 
+# Copy init file
+cp copy.init.yml init.yml
+
 echo -n 'Enter username of droplet:' && read -r User_Name
+
+# replace username
+sed -i 's:username:$User_Name:' init.yml
+
+
 echo -n 'Enter the Name of the server:' && read -r Server_Name
 echo -n 'Enter the Tag for the server:' && read -r Server_Tag
 
