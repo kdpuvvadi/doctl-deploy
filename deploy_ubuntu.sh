@@ -131,6 +131,10 @@ sleep 1s
 echo "Creating droplet on Digital Ocean" 
 deploy 
 
+#remove init file
+echo removing init file
+rm init.yml
+
 sleep 1s
 echo list of droplets
 list
