@@ -116,23 +116,12 @@ list() {
     doctl compute droplet list --format ID,Name,Tags,"Public IPv4",Region
 }
 
-echo Name of the Server is $Server_Name
-sleep 1s
-
-echo Server Tag is $Server_Tag
-sleep 1s
-
-echo selected distro $Server_distro
-sleep 1s
-
-echo Selected Region $Server_region
-sleep 1s
-
-echo size is $Server_size
-sleep 1s
-
-echo ssh key $ssh_key
-sleep 1s
+echo Name of the Server is $Server_Name && sleep 1s
+echo Server Tag is $Server_Tag && sleep 1s
+echo selected distro $Server_distro && sleep 1s
+echo Selected Region $Server_region && sleep 1s
+echo size is $Server_size && sleep 1s
+echo ssh key $ssh_key && sleep 1s
 
 echo "Creating droplet on Digital Ocean" 
 deploy 
