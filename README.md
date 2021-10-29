@@ -34,5 +34,5 @@ This was a quick scipt i wrote to spin up the droplet. it's not perfect and ther
 
 ## Screenshots
 
-![ Screenshot](deploy.png)
+![Screenshot](screenshots/deploy.png)
 
