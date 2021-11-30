@@ -3,9 +3,50 @@
 doctl >/dev/null 2>/dev/null
 
 if [ "$?" != 0 ]; 
-    then echo "Error!" 1>&2
-    echo please install doctl
-    exit 127
+then 
+    echo "Error!" 1>&2
+    echo "doctl is not installed."
+    echo -n "Install doctl?[Y/N]" && read -r reply 
+    if [[ $reply =~ ^(Y|y)$ ]];
+    then
+        echo "Installing doctl"
+        # Get doctl latest version
+        latestver=$(curl --silent "https://api.github.com/repos/digitalocean/doctl/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/v//g')
+        
+        #get system arch
+        sysarch=$(dpkg --print-architecture)
+
+        #latest version uri
+        downURL="https://github.com/digitalocean/doctl/releases/download/v$latestver/doctl-$latestver-linux-$sysarch.tar.gz"
+
+        # Download the lastet release
+        wget $downURL 
+
+        # Extract archive
+        echo Extracting the archive
+        tar -xvf doctl-$latestver-linux-$sysarch.tar.gz
+
+        # Move
+        echo Installing
+        sudo mv doctl /usr/local/bin
+        if test -f "/usr/local/bin/doctl"; then
+            echo done
+        fi
+
+        #cleanup
+        echo cleaning up
+        rm -rf doctl-$latestver-*
+        echo done
+
+        echo "Setup doctl auth. Please keep the auth token ready"
+        echo "Start Authentication?[Y/N]"
+        doctl auth init --context default
+        
+    else
+        echo "Error!" 1>&2
+        echo please install doctl
+        exit 127
+    fi
 fi 
 
 # Copy init file
