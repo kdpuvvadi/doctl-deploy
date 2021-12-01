@@ -65,9 +65,7 @@ ssh_key=$(ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | cut -b 10-56)
 doctlkeys=$(doctl compute ssh-key list | awk '{print $3}' | sed '/FingerPrint/d')
 
 #check key is present
-if [[ "$doctlkeys" == *"$ssh_key"* ]]; then
-    echo "SSH Key already added"
-else 
+if [[ "$doctlkeys" != *"$ssh_key"* ]]; then
     echo "SSH key not added"
     sleep 1
     echo "Adding pub key to DigitalOcean"
