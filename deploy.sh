@@ -49,16 +49,6 @@ then
     fi
 fi 
 
-# Copy init file
-cp copy.init.yml init.yml
-
-# replace username
-sed -i -e "s/username/$User_Name/" init.yml
-
-# add pub key
-key_pub=$(cat ~/.ssh/id_rsa.pub)
-sed -i -e "s|pubkey|$key_pub|" init.yml
-
 ssh_key=$(ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | cut -b 10-56)
 
 # get keys from doctl
@@ -74,6 +64,17 @@ if [[ "$doctlkeys" != *"$ssh_key"* ]]; then
 fi
 
 echo -n 'Enter username of droplet:' && read -r User_Name
+
+# Copy init file
+cp copy.init.yml init.yml
+
+# replace username
+sed -i -e "s/username/$User_Name/" init.yml
+
+# add pub key
+key_pub=$(cat ~/.ssh/id_rsa.pub)
+sed -i -e "s|pubkey|$key_pub|" init.yml
+
 echo -n 'Enter the Name of the server:' && read -r Server_Name
 echo -n 'Enter the Tag for the server:' && read -r Server_Tag
 
