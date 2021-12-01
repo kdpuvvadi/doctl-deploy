@@ -20,16 +20,24 @@ To deploy this you need make `deploy.sh` exicutable.
 chmod u+x deploy.sh
 ```
 
-## Run
+## RUN
+
+To deploy this you need make deploy.sh exicutable.
 
 ```bash
-  ./deploy.sh
+chmod u+x deploy.sh
 ```
+
+If the Digital Ocean cli `doctl` not installed, it'll prompt for installation. Enter `Y` and enter `RETURN` to install and setup authetication. 
+
+If you've selected to go through the installation, please keep the DigitalOcean auth token ready. Paste the key when prompted. If the key is valid, installation will be completed and will go through `droplet` deployent. 
+
+if you haven't already added `ssh key` in your `~/.ssh/id_rsa.pub`, key will be imported to DigitalOcean. 
 
 
 ## Support
 
-This was a quick scipt i wrote to spin up the droplet. it's not perfect and there are better ways to do this but this works. That's all that matters to me. 
+This was a quick and dirty scipt i wrote to spin up the droplet. it's not perfect and there are better ways to do this but this works. That's all that matters.
 
 
 ## Screenshots
