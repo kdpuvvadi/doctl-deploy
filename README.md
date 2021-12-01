@@ -28,7 +28,7 @@ To deploy this you need make deploy.sh exicutable.
 chmod u+x deploy.sh
 ```
 
-If the Digital Ocean cli `doctl` not installed, it'll prompt for installation. Enter `Y` and enter `RETURN` to install and setup authetication. 
+If the DigitalOcean cli `doctl` not installed, it'll prompt for installation. Enter `Y` and enter `RETURN` to install and setup authetication. 
 
 If you've selected to go through the installation, please keep the DigitalOcean auth token ready. Paste the key when prompted. If the key is valid, installation will be completed and will go through `droplet` deployent. 
 
