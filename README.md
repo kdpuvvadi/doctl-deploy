@@ -42,5 +42,15 @@ This was a quick and dirty scipt i wrote to spin up the droplet. it's not perfec
 
 ## Screenshots
 
+### If doctl not installed
+
+![Screenshot](screenshots/install.png)
+
+### If Key not present
+
+![Screenshot](screenshots/key-install.png)
+
+### Deployment
+
 ![Screenshot](screenshots/deploy.png)
 
