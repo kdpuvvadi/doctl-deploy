@@ -52,8 +52,6 @@ fi
 # Copy init file
 cp copy.init.yml init.yml
 
-echo -n 'Enter username of droplet:' && read -r User_Name
-
 # replace username
 sed -i -e "s/username/$User_Name/" init.yml
 
@@ -61,10 +59,25 @@ sed -i -e "s/username/$User_Name/" init.yml
 key_pub=$(cat ~/.ssh/id_rsa.pub)
 sed -i -e "s|pubkey|$key_pub|" init.yml
 
+ssh_key=$(ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | cut -b 10-56)
+
+# get keys from doctl
+doctlkeys=$(doctl compute ssh-key list | awk '{print $3}' | sed '/FingerPrint/d')
+
+#check key is present
+if [[ "$doctlkeys" == *"$ssh_key"* ]]; then
+    echo "SSH Key already added"
+else 
+    echo "SSH key not added"
+    sleep 1
+    echo "Adding pub key to DigitalOcean"
+    sysHost=$(cat /etc/hostname | sed 's/\.//g')
+    doctl compute ssh-key import $sysHost --public-key-file ~/.ssh/id_rsa.pub
+fi
+
+echo -n 'Enter username of droplet:' && read -r User_Name
 echo -n 'Enter the Name of the server:' && read -r Server_Name
 echo -n 'Enter the Tag for the server:' && read -r Server_Tag
-
-ssh_key=$(ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | cut -b 10-56)
 
 PS3='Select Distribution: '
 distro=("ubuntu-21-04-x64" "ubuntu-20-04-x64" "centos-7-x64" "centos-8-x64")
