@@ -93,7 +93,7 @@ do
             break
             ;;
         "centos-7-x64")
-            Server_distro="ubuntu-20-04-x64"
+            Server_distro="centos-7-x64"
             break
             ;;
         "centos-8-x64")
