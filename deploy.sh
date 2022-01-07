@@ -59,7 +59,7 @@ if [[ "$doctlkeys" != *"$ssh_key"* ]]; then
     echo "SSH key not added"
     sleep 1
     echo "Adding pub key to DigitalOcean"
-    sysHost=$(cat /etc/hostname | sed 's/\.//g')
+    sysHost=$(hostname | sed 's/\.//g')
     doctl compute ssh-key import $sysHost --public-key-file ~/.ssh/id_rsa.pub
 fi
 
