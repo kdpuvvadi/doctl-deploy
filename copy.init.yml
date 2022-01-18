@@ -9,7 +9,4 @@ users:
 runcmd:
   - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
   - sed -i -e '$aAllowUsers ansible' /etc/ssh/sshd_config
-  - apt update
-  - apt -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade -y
   - restart ssh
-
