@@ -79,7 +79,7 @@ echo -n 'Enter the Name of the server:' && read -r Server_Name
 echo -n 'Enter the Tag for the server:' && read -r Server_Tag
 
 PS3='Select Distribution: '
-distro=("ubuntu-21-04-x64" "ubuntu-20-04-x64" "centos-7-x64" "centos-8-x64")
+distro=("ubuntu-21-04-x64" "ubuntu-20-04-x64" "rockylinux-8-x64" "rockylinux-8-4-x64")
 select opt1 in "${distro[@]}"
 
 do
