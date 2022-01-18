@@ -92,6 +92,14 @@ do
             Server_distro="ubuntu-20-04-x64"
             break
             ;;
+        "rockylinux-8-x64")
+            Server_distro="rockylinux-8-x64"
+            break
+            ;;
+        "rockylinux-8-4-x64")
+            Server_distro="rockylinux-8-4-x64"
+            break
+            ;;
         *) echo "invalid option $REPLY";; 
     esac
 done
