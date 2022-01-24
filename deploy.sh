@@ -3,7 +3,7 @@
 # Get doctl latest version
 latestver=$(curl --silent "https://api.github.com/repos/digitalocean/doctl/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/v//g')
 
-function update() {
+function install_doctl() {
 
     echo "Installing doctl"
     
@@ -40,9 +40,7 @@ function update() {
 
 }
 
-function install_doctl() {
-
-    update
+function auth() {
 
     echo "Setup doctl auth. Please keep the auth token ready"
     echo "Start Authentication?[Y/N]"
@@ -57,6 +55,7 @@ then
     if [[ $reply =~ ^(Y|y)$ ]];
     then
         install_doctl
+        auth
     else
         echo "Error!" 1>&2
         echo please install doctl
@@ -71,7 +70,7 @@ else
         echo -n "update doctl?[Y/N]" && read -r reply 
         if [[ $reply =~ ^(Y|y)$ ]];
         then
-            update
+            install_doctl
         fi
     fi
 fi
