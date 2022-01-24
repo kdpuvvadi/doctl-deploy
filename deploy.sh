@@ -6,15 +6,24 @@ function install_doctl() {
         # Get doctl latest version
         latestver=$(curl --silent "https://api.github.com/repos/digitalocean/doctl/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/v//g')
         
+        # system arch
+        architecture=""
+        case $(uname -m) in
+            i386)   architecture="386" ;;
+            i686)   architecture="386" ;;
+            x86_64) architecture="amd64" ;;
+            arm) architecture="arm64" ;;
+        esac
+
         #latest version uri
-        downURL="https://github.com/digitalocean/doctl/releases/download/v$latestver/doctl-$latestver-linux-amd64.tar.gz"
+        downURL="https://github.com/digitalocean/doctl/releases/download/v$latestver/doctl-$latestver-linux-$architecture.tar.gz"
 
         # Download the lastet release
         wget $downURL 
 
         # Extract archive
         echo Extracting the archive
-        tar -xvf doctl-$latestver-linux-amd64.tar.gz
+        tar -xvf doctl-$latestver-linux-$architecture.tar.gz
 
         # Move
         echo Installing
