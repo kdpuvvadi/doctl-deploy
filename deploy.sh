@@ -1,5 +1,44 @@
 #!/bin/bash
 
+function update() {
+
+    echo "Installing doctl"
+    # Get doctl latest version
+    latestver=$(curl --silent "https://api.github.com/repos/digitalocean/doctl/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/v//g')
+    
+    # system arch
+    architecture=""
+    case $(uname -m) in
+        i386)   architecture="386" ;;
+        i686)   architecture="386" ;;
+        x86_64) architecture="amd64" ;;
+        arm) architecture="arm64" ;;
+    esac
+
+    #latest version uri
+    downURL="https://github.com/digitalocean/doctl/releases/download/v$latestver/doctl-$latestver-linux-$architecture.tar.gz"
+
+    # Download the lastet release
+    wget $downURL 
+
+    # Extract archive
+    echo Extracting the archive
+    tar -xvf doctl-$latestver-linux-$architecture.tar.gz
+
+    # Move
+    echo Installing
+    sudo mv doctl /usr/local/bin
+    if test -f "/usr/local/bin/doctl"; then
+        echo done
+    fi
+
+    #cleanup
+    echo cleaning up
+    rm -rf doctl-$latestver-*
+    echo done
+
+}
+
 function install_doctl() {
 
     echo "Installing doctl"
@@ -55,7 +94,11 @@ then
         echo please install doctl
         exit 127
     fi
-else
+elif (command -v doctl  &> /dev/null)
+
+    #Check for update
+
+
 fi
 
 ssh_key=$(ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | cut -b 10-56)
