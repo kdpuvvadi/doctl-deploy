@@ -192,7 +192,7 @@ deploy() {
 }
 
 list() {
-    doctl compute droplet list --format ID,Name,Tags,"Public IPv4",Region
+    doctl compute droplet list --format ID,Name,Tags,"Public IPv4",Region,Status
 }
 
 echo Name of the Server is $Server_Name && sleep 1s
