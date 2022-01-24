@@ -1,30 +1,20 @@
 #!/bin/bash
 
-doctl >/dev/null 2>/dev/null
+function install_doctl() {
 
-if [ "$?" != 0 ]; 
-then 
-    echo "Error!" 1>&2
-    echo "doctl is not installed."
-    echo -n "Install doctl?[Y/N]" && read -r reply 
-    if [[ $reply =~ ^(Y|y)$ ]];
-    then
-        echo "Installing doctl"
+    echo "Installing doctl"
         # Get doctl latest version
         latestver=$(curl --silent "https://api.github.com/repos/digitalocean/doctl/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/v//g')
         
-        #get system arch
-        sysarch=$(dpkg --print-architecture)
-
         #latest version uri
-        downURL="https://github.com/digitalocean/doctl/releases/download/v$latestver/doctl-$latestver-linux-$sysarch.tar.gz"
+        downURL="https://github.com/digitalocean/doctl/releases/download/v$latestver/doctl-$latestver-linux-amd64.tar.gz"
 
         # Download the lastet release
         wget $downURL 
 
         # Extract archive
         echo Extracting the archive
-        tar -xvf doctl-$latestver-linux-$sysarch.tar.gz
+        tar -xvf doctl-$latestver-linux-amd64.tar.gz
 
         # Move
         echo Installing
@@ -41,13 +31,23 @@ then
         echo "Setup doctl auth. Please keep the auth token ready"
         echo "Start Authentication?[Y/N]"
         doctl auth init --context default
-        
+}
+
+if ( ! command -v doctl  &> /dev/null); 
+then 
+    echo "Error!" 1>&2
+    echo "doctl is not installed."
+    echo -n "Install doctl?[Y/N]" && read -r reply 
+    if [[ $reply =~ ^(Y|y)$ ]];
+    then
+        install_doctl
     else
         echo "Error!" 1>&2
         echo please install doctl
         exit 127
     fi
-fi 
+else
+fi
 
 ssh_key=$(ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | cut -b 10-56)
 
