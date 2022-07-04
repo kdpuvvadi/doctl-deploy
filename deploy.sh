@@ -105,28 +105,28 @@ echo -n 'Enter the Name of the server:' && read -r Server_Name
 echo -n 'Enter the Tag for the server:' && read -r Server_Tag
 
 PS3='Select Distribution: '
-distro=("ubuntu-21-04-x64" "ubuntu-20-04-x64" "rockylinux-8-x64" "rockylinux-8-4-x64")
+distro=("ubuntu-22-04-x64" "ubuntu-21-04-x64" "ubuntu-20-04-x64" "rockylinux-8-x64" "rockylinux-8-4-x64")
 select opt1 in "${distro[@]}"
 
 do
     case $opt1 in
-        "ubuntu-22-04-x64")
+        "ubuntu 22-04 LTS x64")
             Server_distro="ubuntu-22-04-x64"
             break
             ;;
-        "ubuntu-21-04-x64")
+        "ubuntu 21-04 LTS x64")
             Server_distro="ubuntu-21-04-x64"
             break
             ;;
-        "ubuntu-20-04-x64")
+        "ubuntu-20-04 LTS x64")
             Server_distro="ubuntu-20-04-x64"
             break
             ;;
-        "rockylinux-8-x64")
+        "rockylinux 8 x64")
             Server_distro="rockylinux-8-x64"
             break
             ;;
-        "rockylinux-8-4-x64")
+        "rockylinux 8.4 x64")
             Server_distro="rockylinux-8-4-x64"
             break
             ;;
@@ -175,15 +175,15 @@ select opt3 in "${Size[@]}"
 
 do
     case $opt3 in
-        "s-1vcpu-1gb")
+        "1 Core CPU 1GB RAM")
             Server_size="s-1vcpu-1gb"
             break
             ;;
-        "s-1vcpu-2gb")
+        "1 Core CPU 2GB RAM")
             Server_size="s-1vcpu-2gb"
             break
             ;;
-        "s-2vcpu-2gb")
+        "2 Core CPU 2GB RAM")
             Server_size="s-2vcpu-2gb"
             break
             ;;
