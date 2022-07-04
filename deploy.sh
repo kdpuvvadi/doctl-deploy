@@ -110,6 +110,10 @@ select opt1 in "${distro[@]}"
 
 do
     case $opt1 in
+        "ubuntu-22-04-x64")
+            Server_distro="ubuntu-22-04-x64"
+            break
+            ;;
         "ubuntu-21-04-x64")
             Server_distro="ubuntu-21-04-x64"
             break
