@@ -105,28 +105,28 @@ echo -n 'Enter the Name of the server:' && read -r Server_Name
 echo -n 'Enter the Tag for the server:' && read -r Server_Tag
 
 PS3='Select Distribution: '
-distro=("ubuntu-22-04-x64" "ubuntu-21-04-x64" "ubuntu-20-04-x64" "rockylinux-8-x64" "rockylinux-8-4-x64")
+distro=("Ubuntu 22.04 LTS x64" "Ubuntu 21.04 LTS x64" "Ubuntu 20.04 LTS x64" "Rocky Linux 8 x64" "Rocky Linux 8.4 x64")
 select opt1 in "${distro[@]}"
 
 do
     case $opt1 in
-        "ubuntu 22-04 LTS x64")
+        "Ubuntu 22.04 LTS x64")
             Server_distro="ubuntu-22-04-x64"
             break
             ;;
-        "ubuntu 21-04 LTS x64")
+        "Ubuntu 21.04 LTS x64")
             Server_distro="ubuntu-21-04-x64"
             break
             ;;
-        "ubuntu-20-04 LTS x64")
+        "Ubuntu 20.04 LTS x64")
             Server_distro="ubuntu-20-04-x64"
             break
             ;;
-        "rockylinux 8 x64")
+        "Rocky Linux 8 x64")
             Server_distro="rockylinux-8-x64"
             break
             ;;
-        "rockylinux 8.4 x64")
+        "Rocky Linux 8.4 x64")
             Server_distro="rockylinux-8-4-x64"
             break
             ;;
@@ -166,7 +166,7 @@ do
 done
 
 PS3='Select the Size of VPS: '
-Size=("s-1vcpu-1gb" "s-1vcpu-2gb" "s-2vcpu-2gb" )
+Size=("1 Core CPU 1GB RAM" "1 Core CPU 2GB RAM" "2 Core CPU 2GB RAM" )
 select opt3 in "${Size[@]}"
 
 do
