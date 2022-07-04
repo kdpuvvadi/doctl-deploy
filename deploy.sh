@@ -153,10 +153,6 @@ do
             Server_region="sfo3"
             break
             ;;
-        "San Francisco 2")
-            Server_region="sfo2"
-            break
-            ;;
         "New York 1")
             Server_region="nyc1"
             break
