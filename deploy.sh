@@ -105,7 +105,7 @@ echo -n 'Enter the Name of the server:' && read -r Server_Name
 echo -n 'Enter the Tag for the server:' && read -r Server_Tag
 
 PS3='Select Distribution: '
-distro=("Ubuntu 22.04 LTS x64" "Ubuntu 21.04 LTS x64" "Ubuntu 20.04 LTS x64" "Rocky Linux 8 x64" "Rocky Linux 8.4 x64")
+distro=("Ubuntu 22.04 LTS x64" "Ubuntu 21.04 LTS x64" "Ubuntu 20.04 LTS x64" "Rocky Linux 8 x64" "Rocky Linux 8.4 x64" "CentOS 7")
 select opt1 in "${distro[@]}"
 
 do
@@ -128,6 +128,10 @@ do
             ;;
         "Rocky Linux 8.4 x64")
             Server_distro="rockylinux-8-4-x64"
+            break
+            ;;
+        "CentOS 7")
+            Server_distro="centos-7-x64"
             break
             ;;
         *) echo "invalid option $REPLY";; 
