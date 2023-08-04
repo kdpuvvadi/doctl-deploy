@@ -8,5 +8,5 @@ users:
     shell: /bin/bash
 runcmd:
   - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
-  - sed -i -e '$aAllowUsers ansible' /etc/ssh/sshd_config
+  - sed -i -e '$aAllowUsers username' /etc/ssh/sshd_config
   - restart ssh
